@@ -1,0 +1,53 @@
+1.
+
+SELECT *
+FROM students;
+
+2.
+
+SELECT s.full_name, d.name AS department
+FROM students s
+JOIN departments d ON s.department_id = d.id;
+
+3.
+
+SELECT status, COUNT(*) AS total_students
+FROM students
+GROUP BY status;
+
+4.
+
+SELECT s.full_name
+FROM students s
+JOIN enrollments e ON s.id = e.student_id
+JOIN course_offerings co ON e.offering_id = co.id
+JOIN courses c ON co.course_id = c.id
+WHERE c.code = 'CS101';
+
+5.
+
+SELECT s.full_name, c.code, c.title
+FROM students s
+JOIN enrollments e ON s.id = e.student_id
+JOIN course_offerings co ON e.offering_id = co.id
+JOIN courses c ON co.course_id = c.id;
+
+6.
+
+SELECT s.full_name
+FROM students s
+LEFT JOIN enrollments e ON s.id = e.student_id
+WHERE e.id IS NULL;
+
+7.
+
+SELECT s.full_name
+FROM students s
+JOIN departments d ON s.department_id = d.id
+WHERE d.name = 'Data Science';
+
+8.
+
+SELECT full_name, status
+FROM students
+WHERE status IN ('inactive', 'suspended');
